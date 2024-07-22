@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
             val intent = Intent(this, DetalhesActivity::class.java)
 
+            //passar parametros para nova tela
+            intent.putExtra("serie", "The Witcher")
+            intent.putExtra("classificacao", 5)
+            intent.putExtra("avaliacao", 9.2)
+
             startActivity(intent)
         }
     }
