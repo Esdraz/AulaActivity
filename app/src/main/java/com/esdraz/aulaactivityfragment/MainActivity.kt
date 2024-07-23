@@ -30,9 +30,19 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, DetalhesActivity::class.java)
 
             //passar parametros para nova tela
-            intent.putExtra("serie", "The Witcher")
-            intent.putExtra("classificacao", 5)
-            intent.putExtra("avaliacao", 9.2)
+//            intent.putExtra("serie", "The Witcher")
+//            intent.putExtra("classificacao", 5)
+//            intent.putExtra("avaliacao", 9.2)
+
+            val serie = Serie(
+                "House of the Dragon",
+                "Spin-of da serie Game of Thrones",
+                4.9,
+                "Karen Wacker",
+                "HBO"
+            )
+
+            intent.putExtra("tv-show", serie)
 
             startActivity(intent)
         }

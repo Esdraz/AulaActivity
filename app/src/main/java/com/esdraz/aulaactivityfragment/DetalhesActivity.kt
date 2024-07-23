@@ -1,5 +1,6 @@
 package com.esdraz.aulaactivityfragment
 
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -29,13 +30,22 @@ class DetalhesActivity : AppCompatActivity() {
         //bundle tem todos os parametros passados
         val bundle = intent.extras
         if (bundle != null) {
-            val serie = bundle.getString("serie")
-            val classificacao = bundle.getInt("classificacao")
-            val avaliacao = bundle.getDouble("avaliacao")
+//            val serie = bundle.getString("serie")
+//            val classificacao = bundle.getInt("classificacao")
+//            val avaliacao = bundle.getDouble("avaliacao")
+//
+//            val resultado = "Serie: $serie - class: $classificacao/5 - aval: $avaliacao"
 
-            val resultado = "Serie: $serie - class: $classificacao/5 - aval: $avaliacao"
+            val serie = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//                bundle.getSerializable("tv-show", Serie::class.java)
+                bundle.getParcelable("tv-show", Serie::class.java)
+            } else {
+//                bundle.getSerializable("tv-show") as Serie //forma antiga
+                bundle.getParcelable("tv-show")
+            }
 
-            textSerie.text = resultado
+//            textSerie.text = resultado
+            textSerie.text = "${serie?.nome} - ${serie?.avaliacoes} - ${serie?.descricao}"
         }
         btnFechar.setOnClickListener {
             finish()
